@@ -1,6 +1,6 @@
 # CXR-RePaiR: Retrieval-Based Chest X-Ray Report Generation Using a Pre-trained Contrastive Language-Image Model
 
-CXR-RePaiR (Contrastive X-ray-Report Pair Retrieval) is a retrieval-based radiology report generation approach that uses a contrastive language-image model.
+CXR-RePaiR (Contrastive X-ray-Report Pair Retrieval) is a retrieval-based radiology report generation approach that uses a contrastive language-image model. See our paper [here](https://proceedings.mlr.press/v158/endo21a/endo21a.pdf)!
 
 ![CXR-RePaiR](cxr-repair.png)
 
