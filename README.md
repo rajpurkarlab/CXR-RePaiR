@@ -75,7 +75,7 @@ In order to generate per-pathology predictions from the outputted reports, use [
 ```
 python test_acc.py \
  --dir=CXR-RePaiR-2_mimic_results \
- --bootstrap_dir=<directory where boostrap indices and labels are stored> \
+ --gt_labels_path=<path to where gt chexbert labels are stored>
 ```
 
 ## License
