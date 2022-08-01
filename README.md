@@ -54,15 +54,19 @@ The CLIP model checkpoint trained on MIMIC-CXR train set is available for downlo
 ```
 python gen_corpus_embeddings.py \
   --clip_model_path=<name of clip model state dictionary for generating embeddings> \
+  --clip_pretrained \
   --data_path=<path of csv file containing training corpus (either sentence level or report level)> \
   --out=clip_pretrained_mimic_train_sentence_embeddings.pt
 ```
+
+*Note: if you are using a clip model that was not first pre-trained on  natural language-image pairs, then you shouldn't set the `--clip_pretrained` flag.*
 
 ### Creating reports
 ```
 python run_test.py \
   --corpus_embeddings_name=clip_pretrained_mimic_train_sentence_embeddings.pt \
   --clip_model_path=<name of clip model state dictionary> \
+  --clip_pretrained \
   --out_dir=CXR-RePaiR-2_mimic_results \
   --test_cxr_path=<path to test X-rays> \
   --topk=2
