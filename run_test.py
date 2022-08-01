@@ -14,7 +14,7 @@ from tqdm import tqdm
 from data import MIMICImageDataset, CheXpertImageDataset
 
 import clip
-from model import CLIP
+# from model import CLIP
 
 from utils import nonpretrained_params
 
@@ -26,7 +26,7 @@ def main(args):
         model, _ = clip.load("ViT-B/32", device=device, jit=False)
         print("Loaded in pretrained model.")
     else:
-        model = CLIP(**nonpretrained_params)
+        model = clip.CLIP(**nonpretrained_params)
         print("Loaded in clip model.")
 
     model.load_state_dict(torch.load(args.clip_model_path, map_location=device))

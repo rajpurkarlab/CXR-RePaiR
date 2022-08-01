@@ -5,7 +5,7 @@ import torch
 from tqdm import tqdm
 
 import clip
-from model import CLIP
+# from model import CLIP
 
 from utils import nonpretrained_params
 
@@ -20,11 +20,11 @@ def encode_texts(imps, model, device):
 def main(args):
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
-    if not args.from_scratch: # clip model is pretrained on chest X-rays, uses different architecture
+    if args.clip_pretrained: # clip model is pretrained on chest X-rays, uses different architecture
         model, _ = clip.load("ViT-B/32", device=device, jit=False)
         print("Loaded in pretrained model.")
     else:
-        model = CLIP(**nonpretrained_params)
+        model = clip.CLIP(**nonpretrained_params)
         print("Loaded in clip model.")
     
     model.load_state_dict(torch.load(args.clip_model_path, map_location=device))
