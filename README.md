@@ -9,10 +9,14 @@ CXR-RePaiR (Contrastive X-ray-Report Pair Retrieval) is a retrieval-based radiol
 ### Installation
 #### Using conda
 
+First, [install PyTorch 1.7.1](https://pytorch.org/get-started/locally/) (or later) and torchvision, as well as small additional dependencies. On a CUDA GPU machine, the following will do the trick:
+
 ```
-conda env create -f cxr-repair-env.yml
-conda activate cxr-repair-env
+conda install --yes -c pytorch pytorch=1.7.1 torchvision cudatoolkit=11.0
+pip install ftfy regex tqdm pandas h5py sklearn
 ```
+
+Replace `cudatoolkit=11.0` above with the appropriate CUDA version on your machine or `cpuonly` when installing on a machine without a GPU.
 
 ### Data Preprocessing
 In order to run our method, we must run a series of steps to process the MIMIC-CXR-JPG dataset.
@@ -37,14 +41,14 @@ python data_preprocessing/extract_impressions.py \
 
 #### Create Test Set of Report/CXR Pairs
 ```
-python data_preprocessing/create_bootstrapped_testset_copy.py \
+python data_preprocessing/create_bootstrapped_testset.py \
   --dir=mimic_data \
   --bootstrap_dir=bootstrap_test \
   --cxr_files_dir=<mimic-cxr-jpg directory containing chest X-rays>
 ```
 
 #### Get groundtruth labels for test reports
-Either retrieve chexpert embeddings of the mimic test reports provided in the mimic-cxr-2.0.0-chexpert.csv.gz file, or run CheXbert on the reports.csv file to get labels
+Either retrieve chexpert embeddings of the mimic test reports provided in the mimic-cxr-2.0.0-chexpert.csv.gz file, or run CheXbert on the reports.csv file to get labels. Title the file labels.csv, and put the file under the bootstrap_test directory.
 
 
 ### Pre-trained CLIP Model
@@ -68,7 +72,7 @@ python run_test.py \
   --clip_model_path=<name of clip model state dictionary> \
   --clip_pretrained \
   --out_dir=CXR-RePaiR-2_mimic_results \
-  --test_cxr_path=<path to test X-rays> \
+  --test_cxr_path=bootstrap_test/cxr.h5 \
   --topk=2
 ```
 
@@ -77,9 +81,9 @@ In order to generate per-pathology predictions from the outputted reports, use [
 
 ### Testing performance
 ```
-python test_acc.py \
+python test_acc_batch.py \
  --dir=CXR-RePaiR-2_mimic_results \
- --gt_labels_path=<path to where gt chexbert labels are stored>
+ --bootstrap_dir=bootstrap_test/
 ```
 
 ## License

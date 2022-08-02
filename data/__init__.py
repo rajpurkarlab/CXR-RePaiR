@@ -1,1 +1,2 @@
-from .mimic_image_dataset import MIMICImageDataset, CheXpertImageDataset
+from .mimic_image_dataset import MIMICImageDataset
+from .chexpert_image_dataset import CheXpertImageDataset

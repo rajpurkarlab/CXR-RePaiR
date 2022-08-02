@@ -43,17 +43,6 @@ def preprocess(img, desired_size):
                         (desired_size-new_size[1])//2))
     return new_img
 
-# def create_label_file():
-#     true_labels = pd.read_csv("/deep/group/data/med-data/split/test_unprocessed.csv")
-#     true_paths = true_labels['path']
-#     test_cxr_paths = get_cxr_paths(test_csv)
-#     contained = true_paths.isin(test_cxr_paths)
-#     not_present_indices = list(contained[contained == False].index)
-#     true_labels_filtered = true_labels.drop(not_present_indices) # order of old and new must be the same for this method to work
-#     assert true_labels_filtered['path'].reset_index(drop=True).equals(test_cxr_paths.reset_index(drop=True))
-#     true_labels_filtered.to_csv(test_labels, index=False)
-
-
 def create_bootstrap_indices(bootstrap_dir, n=10):
     test_h5_path = os.path.join(bootstrap_dir, 'cxr.h5')
     h5 = h5py.File(test_h5_path, 'r')['cxr']

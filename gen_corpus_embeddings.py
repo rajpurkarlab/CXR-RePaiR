@@ -5,7 +5,6 @@ import torch
 from tqdm import tqdm
 
 import clip
-# from model import CLIP
 
 from utils import nonpretrained_params
 

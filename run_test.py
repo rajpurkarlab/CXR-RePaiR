@@ -14,7 +14,6 @@ from tqdm import tqdm
 from data import MIMICImageDataset, CheXpertImageDataset
 
 import clip
-# from model import CLIP
 
 from utils import nonpretrained_params
 

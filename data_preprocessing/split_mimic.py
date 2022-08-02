@@ -67,7 +67,6 @@ def generate_mimic_train_test_csv(report_files_dir, split_ids, csv_path):
                       columns=["dicom_id", "study_id", "subject_id", "report"])
     df.to_csv(csv_path)
 
-
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Create csvs for the full reports of mimic train and test')
 

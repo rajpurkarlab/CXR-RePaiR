@@ -1,30 +1,9 @@
-from re import L
-import subprocess
 import numpy as np
-import os
 import pandas as pd
-from PIL import Image
-import h5py
-import matplotlib.pyplot as plt
 import argparse
-from tabulate import tabulate
-
 import torch
-from torch.utils import data
-from tqdm import tqdm
-import torch.nn as nn
-from torchvision.transforms import Compose, Normalize
-
 from sklearn.metrics import f1_score
-from sklearn.metrics import average_precision_score
-
 import scipy.stats as st
-
-import sys
-sys.path.append('../..')
-
-import concurrent.futures
-from sklearn.metrics import precision_recall_fscore_support, balanced_accuracy_score, f1_score
 
 cxr_labels = ['Atelectasis','Cardiomegaly', 'Consolidation', 'Edema', 'Enlarged Cardiomediastinum', 'Fracture', 'Lung Lesion','Lung Opacity', 'No Finding','Pleural Effusion', 'Pleural Other', 'Pneumonia', 'Pneumothorax', 'Support Devices']
 useful_labels = cxr_labels
